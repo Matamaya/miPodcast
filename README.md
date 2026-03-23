@@ -1,38 +1,61 @@
-## Bienvenido a ShockWave
+# 🎧 ShockWave: Web para Podcasts
 
-Este informe resume el proceso de creación del producto digital final, integrando producción multimedia y desarrollo web accesible.
+Este proyecto es una plataforma interactiva para la producción y distribución de podcasts, integrando producción multimedia avanzada, inteligencia artificial y desarrollo web de alto rendimiento.
 
-1. Producción Multimedia
-    
-    •	Podcast: Grabado y editado íntegramente en Audacity. Se aplicó reducción de ruido para limpiar la voz y el efecto Auto Duck para equilibrar la música de fondo con la locución.
+## 🛠️ Herramientas y Tecnologías
 
-    •	Optimización de Audio: El archivo final se exportó en formato MP3 a 192 kbps para garantizar un equilibrio entre calidad y velocidad de carga en la web.
+Para la realización de este proyecto se han utilizado las siguientes herramientas profesionales:
+* **Desarrollo:** React (Vite), Tailwind CSS v4.0 y GSAP para animaciones.
+* **Audio:** **Audacity** para la edición y mezcla multipista.
+* **Vídeo:** **Veo** (Google Gemini) para la generación de clips cinemáticos y **Canva** para el montaje final.
+* **Recursos:** **Pixabay** para música de fondo y efectos sonoros libres de derechos.
+* **IA:** Clonación de voz para la narrativa del podcast ("Mateo") con luvvoice.
 
-    •	Material Promocional: Se ha integrado un vídeo en formato MP4 (H.264) para asegurar compatibilidad universal. Para cumplir con los requisitos de accesibilidad.
+---
 
+## 1. Producción Multimedia
 
-2. Desarrollo Web y Diseño
+### 🎙️ Podcast: "Zombie Internet"
+* **Edición:** Grabado y editado íntegramente en **Audacity**. Se aplicó **reducción de ruido** para limpiar la voz sintética y el efecto **Auto Duck** para equilibrar la música de fondo de **Pixabay** con la locución de forma automática.
+* **Optimización:** El archivo final se exportó en **wav**, garantizando un audio nítido con un peso optimizado para la web.
+* **Estructura de Datos:** La transcripción no es texto plano estático; se gestiona mediante un archivo `transcripcion_ep1.js` que contiene un objeto estructurado con tiempos y secciones, permitiendo un renderizado dinámico en React.
 
-    •	Tecnologías: La web se ha desarrollado con React, organizando la interfaz en componentes funcionales y reutilizables.
+### 📹 Vídeo Promocional
+* **Generación:** Los visuales fueron generados mediante **Veo**, creando una atmósfera *Digital Noir* coherente con el tema.
+* **Montaje:** Se utilizó **Canva** para la composición de clips, superposición de textos y sincronización con el audio promocional.
+* **Formato:** Exportado en **MP4 (H.264)** con una pista de subtítulos integrada mediante un archivo **WebVTT (.vtt)** para asegurar la accesibilidad total.
 
-    •	Estilos y Animación: Se utilizó Tailwind CSS v4.0 para el diseño responsivo y GSAP para animaciones de entrada fluidas que mejoran la experiencia de usuario.
+---
 
-    •	Integración: Siguiendo las directrices de la práctica, tanto el audio como el vídeo están incrustados directamente en la interfaz mediante etiquetas nativas de HTML5 controladas por React, evitando enlaces externos.
+## 2. Proceso de Edición en Audacity
+Como parte de los requisitos técnicos, se documenta el proceso de post-producción de audio:
 
-3. Accesibilidad (WCAG AA)
+> **[Aquí debes insertar tus capturas de pantalla de Audacity]**
+> * *Captura 1: Vista de las pistas de voz y música superpuestas.*
+![alt text](<Captura de pantalla 2026-03-23 024410.png>)
+> * *Captura 2: Aplicación del efecto Auto Duck en la pista de fondo.*
+![alt text](image.png)
+> * *Captura 3: Configuración de la exportación a WAV.*
+![alt text](image-1.png)
+---
 
-Se han implementado las siguientes medidas para asegurar el cumplimiento de los estándares de accesibilidad:
+## 3. Desarrollo Web y Accesibilidad (WCAG AA)
 
-    •	Estructura Semántica: Uso de etiquetas <header>, <main>, <section> y <nav>.
+* **Arquitectura:** Organización basada en componentes funcionales de React para una navegación SPA (*Single Page Application*) fluida.
+* **Animaciones:** Uso de **GSAP** para crear una experiencia inmersiva desde la carga inicial de la página.
+* **Accesibilidad:**
+    * **Estructura Semántica:** Uso estricto de etiquetas HTML5 (`<header>`, `<main>`, `<section>`).
+    * **Navegación:** Interfaz 100% navegable por teclado con indicadores de foco visibles.
+    * **Contenido:** Transcripción completa accesible desde la interfaz y subtítulos sincronizados en el reproductor de vídeo.
+    * **Validación:** Verificado con **Lighthouse** y **WAVE** para asegurar ratios de contraste y etiquetas `aria-label` correctas.
 
-    •	Navegación: Toda la interfaz es navegable mediante teclado, con un foco visible claramente definido mediante anillos de contraste.
+---
 
-    •	Contenido Alternativo: Se ha incluido una transcripción completa del podcast dentro de la web y subtítulos en el vídeo promocional.
+## 4. Licencia y Atribución
 
-    •	Verificación: La accesibilidad se ha verificado utilizando las herramientas Lighthouse y WAVE, corrigiendo errores de contraste y etiquetas aria-label en elementos interactivos.
-    
-4. Licencia y Atribución
+Este proyecto se distribuye bajo la licencia **Creative Commons (CC BY-NC-SA 4.0)**. 
+* **Código y Diseño:** Mateo.
+* **Música:** Pixabay (Licencia de contenido gratuito).
+* **Visuales:** Generados por IA (Veo).
 
-El proyecto, incluyendo el audio, las imágenes y el código, se publica bajo una licencia Creative Commons (CC BY-NC-SA 4.0), garantizando el reconocimiento de autoría y permitiendo el uso no comercial.
-
-
+---

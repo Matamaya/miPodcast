@@ -73,41 +73,16 @@ export default function Produccion() {
             {/* CONTENIDO PRINCIPAL: Bento*/}
             <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
 
-                {/* PARTE IZQUIERDA: Mockup en caja visual */}
-                <div className="prod-left w-full lg:w-5/12 aspect-[4/5] bg-gradient-to-br from-[#0c515a] via-[#10375a] to-[#04111d] rounded-3xl p-8 relative overflow-hidden flex items-end justify-center shadow-2xl border border-zinc-800/50">
-
-                    {/* Grid decorativo de fondo simulando el blueprint de la imagen */}
-                    <div className="absolute inset-0 z-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] mix-blend-overlay"></div>
-
-                    {/* Dispositivo Mockup */}
-                    <div className="relative z-10 w-3/4 max-w-sm bg-black rounded-t-[2.5rem] border-x-8 border-t-8 border-zinc-900 shadow-2xl h-[90%] overflow-hidden translate-y-2 group">
-
-                        {/* Status bar */}
-                        <div className="absolute top-2 left-1/2 -translate-x-1/2 w-1/3 h-5 bg-black rounded-full z-20"></div>
-
-                        {/* Pantalla interior */}
-                        <div className="w-full h-full bg-[#0a1e2f] relative p-4 flex flex-col gap-4">
-                            <div className="w-full h-20 rounded-2xl bg-gradient-to-r from-teal-500/20 to-blue-500/20 border border-teal-500/30 flex items-center px-4">
-                                <div className="w-10 h-10 rounded-full bg-teal-500/30"></div>
-                                <div className="ml-4 flex-1">
-                                    <div className="h-3 w-3/4 bg-teal-500/30 rounded mb-2"></div>
-                                    <div className="h-2 w-1/2 bg-teal-500/20 rounded"></div>
-                                </div>
-                            </div>
-
-                            <div className="flex-1 w-full rounded-2xl bg-zinc-900/50 border border-zinc-800 p-4">
-                                <div className="h-4 w-1/3 bg-zinc-800 rounded mb-6"></div>
-                                <div className="space-y-3">
-                                    <div className="h-2 w-full bg-zinc-800 rounded"></div>
-                                    <div className="h-2 w-full bg-zinc-800 rounded"></div>
-                                    <div className="h-2 w-4/5 bg-zinc-800 rounded"></div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Reflejo animado */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out z-30 pointer-events-none"></div>
-                    </div>
+                {/* PARTE IZQUIERDA: Video background */}
+                <div className="prod-left w-full lg:w-5/12 aspect-[4/5] bg-[#04111d] rounded-3xl relative overflow-hidden shadow-2xl border border-zinc-800/50 group">
+                    <video 
+                        src="../public/cool_bg.mp4" 
+                        autoPlay 
+                        loop 
+                        muted 
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-1000 ease-out"
+                    ></video>
                 </div>
 
                 {/* PARTE DERECHA: Tarjetas */}

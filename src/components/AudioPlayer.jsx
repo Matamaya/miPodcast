@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import gsap from 'gsap';
 
 const playlistData = [
-    { id: 1, title: "Zombie Internet", src: "/Audio Principal.mp3" },
+    { id: 1, title: "Zombie Internet", src: "/podcast_audio.wav" },
     { id: 2, title: "Mockup Audio 1", src: "/mockup audio 1.mp3" },
     { id: 3, title: "Mockup Audio 2", src: "/mockup audio 2.mp3" },
     { id: 4, title: "Mockup Audio 3", src: "/mockup audio 3.mp3" }
@@ -143,7 +143,11 @@ export default function ReproductorAudio() {
                 ref={audioRef}
                 src={currentTrack.src}
                 crossOrigin="anonymous"
-                onTimeUpdate={() => setCurrentTime(audioRef.current?.currentTime || 0)}
+                onTimeUpdate={() => {
+                    const time = audioRef.current?.currentTime || 0;
+                    setCurrentTime(time);
+                    window.dispatchEvent(new CustomEvent('podcast-time-update', { detail: { time } }));
+                }}
                 onLoadedMetadata={() => setDuration(audioRef.current?.duration || 0)}
                 onEnded={handleNext}
             />

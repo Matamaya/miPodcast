@@ -1,7 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { transcripcionEp1 } from '../../public/transcription.js';
 
 export default function Transcripcion() {
     const [isExpanded, setIsExpanded] = useState(false);
+    const [currentTime, setCurrentTime] = useState(0);
+
+    useEffect(() => {
+        const handleTimeUpdate = (e) => setCurrentTime(e.detail.time);
+        window.addEventListener('podcast-time-update', handleTimeUpdate);
+        return () => window.removeEventListener('podcast-time-update', handleTimeUpdate);
+    }, []);
+
+    const parseTime = (timeStr) => {
+        if (!timeStr) return 0;
+        const parts = timeStr.split(':').map(Number);
+        return parts[0] * 60 + parts[1];
+    };
 
     return (
         <div className="w-full max-w-7xl mx-auto mt-12 mb-20">
@@ -51,24 +65,27 @@ export default function Transcripcion() {
                         <div className="flex flex-col gap-6 text-[2rem] md:text-[3.5rem] leading-[1.1] font-bold tracking-tighter text-black">
 
                             {/* Líneas de transcripción con efecto hover simulando la lectura (karaoke) */}
-                            <p className="hover:text-white transition-colors duration-300 cursor-default">
-                                You know where to find me
-                            </p>
-                            <p className="hover:text-white transition-colors duration-300 cursor-default">
-                                And I know where to look
-                            </p>
-                            <p className="hover:text-white transition-colors duration-300 opacity-60 cursor-default">
-                                Bienvenidos a un nuevo episodio.
-                            </p>
-                            <p className="hover:text-white transition-colors duration-300 opacity-40 cursor-default">
-                                Hoy vamos a sumergirnos en cómo la geometría de la Bauhaus...
-                            </p>
-                            <p className="hover:text-white transition-colors duration-300 opacity-30 cursor-default">
-                                Sigue viva en cada botón que pulsamos en la web moderna.
-                            </p>
-                            <p className="hover:text-white transition-colors duration-300 opacity-20 cursor-default">
-                                Usar CSS Grid y Tailwind para traer colores primarios y formas limpias.
-                            </p>
+                            {transcripcionEp1.map((item, index) => {
+                                const startTime = parseTime(item.tiempo);
+                                const nextItem = transcripcionEp1[index + 1];
+                                const endTime = nextItem ? parseTime(nextItem.tiempo) : Infinity;
+
+                                let opacityClass = "opacity-20 hover:text-white";
+                                let activeStyles = "";
+
+                                if (currentTime >= startTime && currentTime < endTime) {
+                                    opacityClass = "opacity-100 text-white";
+                                    activeStyles = "scale-105 origin-left drop-shadow-2xl";
+                                } else if (currentTime >= endTime) {
+                                    opacityClass = "opacity-40 hover:text-white";
+                                }
+
+                                return (
+                                    <p key={index} className={`transition-all duration-500 cursor-default ${opacityClass} ${activeStyles}`}>
+                                        {item.texto}
+                                    </p>
+                                );
+                            })}
                             <p className="hover:text-white transition-colors duration-300 opacity-20 cursor-default mb-20 text-xl font-medium tracking-normal">
                                 -- Fin de la transcripción --
                             </p>
@@ -78,6 +95,14 @@ export default function Transcripcion() {
 
                 {/* LADO DERECHO: Espacio para animación 3D */}
                 <div className={`transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] hidden md:flex flex-col items-center justify-center bg-zinc-900 border border-zinc-800 rounded-[2rem] p-8 relative overflow-hidden group shadow-2xl ${isExpanded ? 'w-0 opacity-0 overflow-hidden px-0 mx-0 border-none' : 'w-1/2 opacity-100'}`}>
+                    <video
+                        src="../public/audio_loop.mp4"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
+                    ></video>
                 </div>
             </div>
         </div>
