@@ -6,6 +6,12 @@ import Contacto from './pages/Contacto';
 function App() {
   return (
     <div className="min-h-screen bg-[#0f0f0f] text-white font-sans selection:bg-orange-500 selection:text-white overflow-x-hidden">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-orange-500 focus:text-white focus:px-6 focus:py-4 focus:rounded-lg focus:font-bold focus:shadow-2xl"
+      >
+        Saltar al contenido principal
+      </a>
 
       <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl flex items-center justify-between px-6 py-0 pointer-events-none">
         <div className="flex items-center gap-2 pointer-events-auto">
@@ -34,7 +40,7 @@ function App() {
       </header>
 
       {/* CONTENEDOR PRINCIPAL */}
-      <main className="w-full relative pt-32">
+      <main id="main-content" className="w-full relative pt-32">
         <Home />
         <Produccion />
         <Contacto />

@@ -13,6 +13,31 @@ export default function Home() {
     useGSAP(() => {
         const tl = gsap.timeline({ delay: 0.1 });
 
+        // Reducción de animaciones para usuarios con preferencias de reducción de movimiento
+        const mm = gsap.matchMedia();
+        mm.add("(prefers-reduced-motion: no-preference)", () => {
+            // Tus animaciones actuales aquí
+            tl.from(".hero-circle", {
+                x: "-150%",
+                opacity: 0,
+                duration: 1.5,
+                stagger: 0.2,
+                ease: "power3.out"
+            })
+                .from(".main-title", {
+                    opacity: 0,
+                    scale: 0.8,
+                    duration: 1,
+                    ease: "back.out(1.5)"
+                }, "-=1")
+                .from(".bottom-cards", {
+                    y: 50,
+                    opacity: 0,
+                    duration: 0.8,
+                    stagger: 0.1,
+                }, "-=0.5");
+        });
+
         // Animar los 3 circulos de izquierda a derecha (Scroll lateral simulado como entrada)
         tl.from(".hero-circle", {
             x: "-150%",
@@ -53,7 +78,7 @@ export default function Home() {
                 <div className="hero-circle absolute left-[20%] md:left-[30%] w-[250px] h-[250px] md:w-[550px] md:h-[550px] bg-zinc-800 rounded-full z-20 overflow-hidden shadow-2xl border border-zinc-700/50">
                     <img
                         src="https://images.unsplash.com/photo-1493225457124-a1a2a5f5f9af?q=80&w=600&auto=format&fit=crop"
-                        alt="Podcast Center"
+                        alt=""
                         className="w-full h-full object-cover grayscale opacity-70 mix-blend-overlay"
                     />
                 </div>
@@ -62,7 +87,7 @@ export default function Home() {
                 <div className="hero-circle absolute left-[50%] md:left-[52%] w-[250px] h-[250px] md:w-[550px] md:h-[550px] bg-zinc-900 rounded-full z-10 overflow-hidden shadow-2xl border border-zinc-800">
                     <img
                         src="https://images.unsplash.com/photo-1516280440502-d964619b8823?q=80&w=600&auto=format&fit=crop"
-                        alt="Artist"
+                        alt=""
                         className="w-full h-full object-cover grayscale opacity-90"
                     />
                 </div>
