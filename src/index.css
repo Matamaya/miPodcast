@@ -4,3 +4,51 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* MODO REDUCCIÓN DE MOVIMIENTO GLOBALES CSS */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* MODO ALTO CONTRASTE */
+@media (prefers-contrast: more) {
+  body, section, article, div, nav, header, footer {
+    background-color: #000000 !important;
+    color: #FFFF00 !important;
+    border-color: #FFFFFF !important;
+    box-shadow: none !important;
+  }
+  h1, h2, h3, p, span {
+    color: #FFFF00 !important;
+  }
+  a {
+    color: #00FFFF !important;
+    text-decoration: underline !important;
+  }
+  a:hover, a:focus {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+  }
+  button {
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+    border: 2px solid #FFFFFF !important;
+  }
+  button:hover, button:focus {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+  }
+  img, video, svg {
+    filter: contrast(150%) !important;
+  }
+  .text-transparent {
+    color: #FFFF00 !important;
+    -webkit-text-fill-color: #FFFF00 !important;
+    background-clip: border-box !important;
+  }
+}

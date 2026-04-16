@@ -18,9 +18,9 @@ export default function Transcripcion() {
     };
 
     return (
-        <div className="w-full max-w-7xl mx-auto mt-12 mb-20">
+        <section aria-labelledby="transcripcion-titulo" className="w-full max-w-7xl mx-auto mt-12 mb-20">
             {/* Título de sección discreto arriba */}
-            <h2 className="text-3xl font-bold mb-8 text-white text-center md:text-left">
+            <h2 id="transcripcion-titulo" className="text-3xl font-bold mb-8 text-white text-center md:text-left">
                 Transcripción
             </h2>
 
@@ -34,7 +34,7 @@ export default function Transcripcion() {
                     <div className="flex items-center gap-4 z-10 w-full">
                         <img
                             src="../public/portada.jpg"
-                            alt="Album Cover"
+                            alt="Portada del episodio destacado: Zombie Internet"
                             className="w-14 h-14 md:w-16 md:h-16 rounded shadow-lg object-cover"
                         />
                         <div className="flex flex-col flex-1">
@@ -45,15 +45,18 @@ export default function Transcripcion() {
                         {/* Botón de Expandir */}
                         <button
                             onClick={() => setIsExpanded(!isExpanded)}
-                            className="w-10 h-10 flex items-center justify-center bg-black/10 hover:bg-black/20 text-black rounded-full transition-colors flex-shrink-0"
+                            aria-controls="panel-transcripcion"
+                            aria-expanded={isExpanded}
+                            aria-label={isExpanded ? "Reducir transcripción" : "Expandir transcripción"}
+                            className="w-10 h-10 flex items-center justify-center bg-black/10 hover:bg-black/20 text-black rounded-full transition-colors flex-shrink-0 focus:outline-none focus:ring-4 focus:ring-black"
                             title={isExpanded ? "Reducir" : "Expandir"}
                         >
                             {isExpanded ? (
-                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                <svg aria-hidden="true" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z" />
                                 </svg>
                             ) : (
-                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                <svg aria-hidden="true" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
                                 </svg>
                             )}
@@ -61,7 +64,12 @@ export default function Transcripcion() {
                     </div>
 
                     {/* Lyrics / Transcripción (Scrollable) */}
-                    <div className="flex-1 overflow-y-auto mt-8 pr-4 z-10 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-black/20 [&::-webkit-scrollbar-thumb]:rounded-full">
+                    <div
+                        id="panel-letras"
+                        tabIndex="0"
+                        aria-label="Texto de la Transcripción"
+                        className="flex-1 overflow-y-auto mt-8 pr-4 z-10 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-black/20 [&::-webkit-scrollbar-thumb]:rounded-full">
+
                         <div className="flex flex-col gap-6 text-[2rem] md:text-[3.5rem] leading-[1.1] font-bold tracking-tighter text-black">
 
                             {/* Líneas de transcripción con efecto hover simulando la lectura (karaoke) */}
@@ -70,10 +78,12 @@ export default function Transcripcion() {
                                 const nextItem = transcripcionEp1[index + 1];
                                 const endTime = nextItem ? parseTime(nextItem.tiempo) : Infinity;
 
+                                const isActive = currentTime >= startTime && currentTime < endTime;
+
                                 let opacityClass = "opacity-20 hover:text-white";
                                 let activeStyles = "";
 
-                                if (currentTime >= startTime && currentTime < endTime) {
+                                if (isActive) {
                                     opacityClass = "opacity-100 text-white";
                                     activeStyles = "scale-105 origin-left drop-shadow-2xl";
                                 } else if (currentTime >= endTime) {
@@ -81,7 +91,9 @@ export default function Transcripcion() {
                                 }
 
                                 return (
-                                    <p key={index} className={`transition-all duration-500 cursor-default ${opacityClass} ${activeStyles}`}>
+                                    <p key={index}
+                                        aria-current={isActive ? "time" : "false"}
+                                        className={`transition-all duration-500 cursor-default ${opacityClass} ${activeStyles}`}>
                                         {item.texto}
                                     </p>
                                 );
@@ -94,7 +106,9 @@ export default function Transcripcion() {
                 </div>
 
                 {/* LADO DERECHO: Espacio para animación 3D */}
-                <div className={`transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] hidden md:flex flex-col items-center justify-center bg-zinc-900 border border-zinc-800 rounded-[2rem] p-8 relative overflow-hidden group shadow-2xl ${isExpanded ? 'w-0 opacity-0 overflow-hidden px-0 mx-0 border-none' : 'w-1/2 opacity-100'}`}>
+                <div
+                    aria-hidden="true"
+                    className={`transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] hidden md:flex flex-col items-center justify-center bg-zinc-900 border border-zinc-800 rounded-[2rem] p-8 relative overflow-hidden group shadow-2xl ${isExpanded ? 'w-0 opacity-0 overflow-hidden px-0 mx-0 border-none' : 'w-1/2 opacity-100'}`}>
                     <video
                         src="../public/audio_loop.mp4"
                         autoPlay
@@ -105,6 +119,6 @@ export default function Transcripcion() {
                     ></video>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }

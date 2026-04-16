@@ -6,14 +6,29 @@ export default function Contacto() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const nombre = e.target.nombre.value;
-        const email = e.target.email.value;
+        const nombre = e.target.nombre.value.trim();
+        const email = e.target.email.value.trim();
+        const mensaje = e.target.mensaje.value.trim();
 
-        if (!nombre || !email) {
-            setFormStatus({
-                type: 'error',
-                message: 'Error: Por favor, rellena todos los campos obligatorios.'
-            });
+        // Validación secuencial y específica
+        if (!nombre) {
+            setFormStatus({ type: 'error', message: 'Error: Por favor, introduce tu nombre.' });
+            return;
+        }
+
+        if (!email) {
+            setFormStatus({ type: 'error', message: 'Error: Por favor, introduce tu correo electrónico.' });
+            return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            setFormStatus({ type: 'error', message: 'Error: El correo electrónico no tiene un formato válido (ej: maria@dominio.com).' });
+            return;
+        }
+
+        if (!mensaje) {
+            setFormStatus({ type: 'error', message: 'Error: Por favor, introduce tu mensaje o sugerencia.' });
             return;
         }
 
@@ -31,11 +46,9 @@ export default function Contacto() {
                 {/* LADO IZQUIERDO: Formulario Verde */}
                 <div className="w-full lg:w-2/3 bg-[#3fec65] rounded-[2rem] p-8 md:p-12 lg:p-16 text-black flex flex-col justify-between shadow-2xl">
                     <div className="mb-12 md:mb-20">
-                        <h2 className="text-4xl md:text-5xl lg:text-5xl font-light mb-2">
-                            ¿Tienes más cosas que contarnos?
-                        </h2>
-                        <h2 className="text-4xl md:text-5xl lg:text-5xl font-medium">
-                            Hablemos
+                        <h2 className="text-4xl md:text-5xl lg:text-5xl">
+                            <span className="font-light block mb-2">¿Tienes más cosas que contarnos?</span>
+                            <span className="font-medium">Hablemos</span>
                         </h2>
                     </div>
 
@@ -105,7 +118,7 @@ export default function Contacto() {
                             </button>
                             <p className="text-black/60 text-xs max-w-xs leading-relaxed">
                                 Al hacer clic en enviar, aceptas nuestra <br className="hidden md:block" />
-                                <a href="#" className="font-semibold text-black underline decoration-black/40 hover:decoration-black transition-colors">Política de Privacidad</a>
+                                <a href="#" className="font-semibold text-black underline decoration-black/40 hover:decoration-black transition-colors focus:outline-none focus:ring-2 focus:ring-black rounded">Política de Privacidad</a>
                             </p>
                         </div>
                     </form>
@@ -116,7 +129,7 @@ export default function Contacto() {
 
                     {/* Tarjeta 1: Audio Upload */}
                     <div className="flex-1 min-h-[250px] bg-[#090b0f] border border-zinc-800 rounded-[2rem] p-8 flex flex-col justify-between hover:border-zinc-700 transition-colors group relative overflow-hidden">
-                        <div className="z-10 flex flex-col items-center justify-center h-full gap-4 text-white hover:text-[#3fec65] transition-colors cursor-pointer"
+                        <div className="z-10 flex flex-col items-center justify-center h-full gap-4 text-white hover:text-[#3fec65] transition-colors cursor-pointer focus:outline-none focus:ring-4 focus:ring-[#3fec65] rounded-xl"
                             role="button"
                             aria-label="Subir archivo de audio"
                             tabIndex="0"
@@ -148,7 +161,7 @@ export default function Contacto() {
                     </div>
 
                     {/* Tarjeta 2: Redes Sociales */}
-                    <a href="#" aria-label="Unirse a nuestro chat de Telegram" className="flex-1 min-h-[250px] bg-[#090b0f] border border-zinc-800 rounded-[2rem] p-8 flex flex-col justify-between hover:border-zinc-700 transition-colors group relative overflow-hidden">
+                    <a href="#" aria-label="Unirse a nuestro chat de Telegram" className="flex-1 min-h-[250px] bg-[#090b0f] border border-zinc-800 rounded-[2rem] p-8 flex flex-col justify-between hover:border-zinc-700 transition-colors group relative overflow-hidden focus:outline-none focus:ring-4 focus:ring-[#0088cc]">
                         <div className="flex flex-col items-center justify-center h-full gap-4 text-white hover:text-[#0088cc] transition-colors relative z-10">
                             {/* Icono Telegram SVG */}
                             <svg aria-hidden="true" className="w-10 h-10 opacity-90 transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.32.023.467.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.01-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.888-.662 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z" /></svg>

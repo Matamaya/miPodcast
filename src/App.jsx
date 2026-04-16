@@ -1,9 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import gsap from 'gsap';
 import Home from './pages/Home';
 import Produccion from './pages/Production';
 import Contacto from './pages/Contacto';
 
 function App() {
+  useEffect(() => {
+    // Detectar la preferencia del navegador/sistema
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    
+    const handleMotionChange = (e) => {
+      if (e.matches) {
+        gsap.globalTimeline.timeScale(999); // Corta las animaciones de GSAP si prefiere reducir movimiento
+      } else {
+        gsap.globalTimeline.timeScale(1); // Mantiene animaciones si no
+      }
+    };
+
+    // Comprobamos el estado inicial nada más cargar
+    handleMotionChange(motionQuery);
+
+    // Escuchamos por si en el navegador lo cambian on-the-fly
+    motionQuery.addEventListener('change', handleMotionChange);
+
+    return () => {
+      motionQuery.removeEventListener('change', handleMotionChange);
+    };
+  }, []);
   return (
     <div className="min-h-screen bg-[#0f0f0f] text-white font-sans selection:bg-orange-500 selection:text-white overflow-x-hidden">
       <a
@@ -22,7 +45,7 @@ function App() {
               <path d="M16 4V20H20V4H16Z" fill="currentColor" />
             </svg>
           </div>
-          <h1 className="text-xl font-bold tracking-tight">ShockWave</h1>
+          <p className="text-xl font-bold tracking-tight">ShockWave</p>
         </div>
 
         {/* PILL CENTRAL */}
@@ -47,7 +70,7 @@ function App() {
       </main>
 
       {/* FOOTER */}
-      <footer className="bg-black text-zinc-500 py-8 text-center mt-20 border-t border-zinc-900">
+      <footer className="bg-black text-zinc-400 py-8 text-center mt-20 border-t border-zinc-900">
         <p>© 2024 ShockWave.</p>
         <p className="text-sm mt-2">
           Contenido bajo licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" className="underline hover:text-white transition-colors" target="_blank" rel="noreferrer">Creative Commons BY-NC-SA 4.0</a>

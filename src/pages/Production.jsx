@@ -75,11 +75,11 @@ export default function Produccion() {
 
                 {/* PARTE IZQUIERDA: Video background */}
                 <div className="prod-left w-full lg:w-5/12 aspect-[4/5] bg-[#04111d] rounded-3xl relative overflow-hidden shadow-2xl border border-zinc-800/50 group">
-                    <video 
-                        src="../public/cool_bg.mp4" 
-                        autoPlay 
-                        loop 
-                        muted 
+                    <video
+                        src="../public/cool_bg.mp4"
+                        autoPlay
+                        loop
+                        muted
                         playsInline
                         className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-1000 ease-out"
                     ></video>
@@ -92,7 +92,7 @@ export default function Produccion() {
                     <article className="prod-card bg-[#111111] p-8 md:p-10 rounded-2xl md:rounded-3xl border border-zinc-800/80 hover:bg-[#1a1a1a] hover:border-teal-500/30 transition-colors group h-full flex flex-col">
                         <span className="text-4xl font-light text-teal-500/80 mb-6 md:font-semibold tracking-widest block">01</span>
                         <h3 className="text-xl font-medium text-white mb-4">Grabación</h3>
-                        <p className="text-zinc-500 font-light leading-relaxed text-lg flex-1">
+                        <p className="text-zinc-400 font-light leading-relaxed text-lg flex-1">
                             Utilizamos micrófonos de condensador para capturar la voz con máxima claridad. El guion se prepara previamente asegurando coherencia.
                         </p>
                     </article>
@@ -101,7 +101,7 @@ export default function Produccion() {
                     <article className="prod-card bg-[#111111] p-8 md:p-10 rounded-2xl md:rounded-3xl border border-zinc-800/80 hover:bg-[#1a1a1a] hover:border-teal-500/30 transition-colors group h-full flex flex-col">
                         <span className="text-4xl font-light text-teal-500/80 mb-6 md:font-semibold tracking-widest block">02</span>
                         <h3 className="text-xl font-medium text-white mb-4">Edición (Audacity)</h3>
-                        <p className="text-zinc-500 font-light leading-relaxed text-lg flex-1">
+                        <p className="text-zinc-400 font-light leading-relaxed text-lg flex-1">
                             El audio bruto pasa por Audacity. Aplicamos reducción de ruido y Auto Duck para que la música disminuya suavemente al dialogar.
                         </p>
                     </article>
@@ -110,7 +110,7 @@ export default function Produccion() {
                     <article className="prod-card bg-[#111111] p-8 md:p-10 rounded-2xl md:rounded-3xl border border-zinc-800/80 hover:bg-[#1a1a1a] hover:border-teal-500/30 transition-colors group h-full flex flex-col">
                         <span className="text-4xl font-light text-teal-500/80 mb-6 md:font-semibold tracking-widest block">03</span>
                         <h3 className="text-xl font-medium text-white mb-4">Optimización Web</h3>
-                        <p className="text-zinc-500 font-light leading-relaxed text-lg flex-1">
+                        <p className="text-zinc-400 font-light leading-relaxed text-lg flex-1">
                             Exportamos en MP3 optimizado para asegurar tiempos de carga rápidos. Todo se integra en React y nuestra arquitectura Frontend.
                         </p>
                     </article>
@@ -119,7 +119,7 @@ export default function Produccion() {
                     <article className="prod-card bg-[#111111] p-8 md:p-10 rounded-2xl md:rounded-3xl border border-zinc-800/80 hover:bg-[#1a1a1a] hover:border-teal-500/30 transition-colors group h-full flex flex-col">
                         <span className="text-4xl font-light text-teal-500/80 mb-6 md:font-semibold tracking-widest block">04</span>
                         <h3 className="text-xl font-medium text-white mb-4">Publicación</h3>
-                        <p className="text-zinc-500 font-light leading-relaxed text-lg flex-1">
+                        <p className="text-zinc-400 font-light leading-relaxed text-lg flex-1">
                             Distribuimos el episodio globalmente con sus meta-datos (RSS) generados automáticamente para garantizar la máxima difusión y SEO.
                         </p>
                     </article>

@@ -13,31 +13,6 @@ export default function Home() {
     useGSAP(() => {
         const tl = gsap.timeline({ delay: 0.1 });
 
-        // Reducción de animaciones para usuarios con preferencias de reducción de movimiento
-        const mm = gsap.matchMedia();
-        mm.add("(prefers-reduced-motion: no-preference)", () => {
-            // Tus animaciones actuales aquí
-            tl.from(".hero-circle", {
-                x: "-150%",
-                opacity: 0,
-                duration: 1.5,
-                stagger: 0.2,
-                ease: "power3.out"
-            })
-                .from(".main-title", {
-                    opacity: 0,
-                    scale: 0.8,
-                    duration: 1,
-                    ease: "back.out(1.5)"
-                }, "-=1")
-                .from(".bottom-cards", {
-                    y: 50,
-                    opacity: 0,
-                    duration: 0.8,
-                    stagger: 0.1,
-                }, "-=0.5");
-        });
-
         // Animar los 3 circulos de izquierda a derecha (Scroll lateral simulado como entrada)
         tl.from(".hero-circle", {
             x: "-150%",
@@ -99,8 +74,8 @@ export default function Home() {
 
                 {/* Botón flotante estilo imagen inferior derecha */}
                 <div className="hero-circle absolute bottom-10 md:bottom-30 right-10 md:right-[17%] z-40">
-                    <button className="bg-white text-black rounded-full px-6 py-3 font-semibold text-sm hover:scale-105 transition-transform flex items-center gap-2">
-                        Learn More
+                    <button className="bg-white text-black rounded-full px-6 py-3 font-semibold text-sm hover:scale-105 transition-transform flex items-center gap-2 focus:outline-none focus:ring-4 focus:ring-orange-500">
+                        Explorar Episodios
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                     </button>
                 </div>
