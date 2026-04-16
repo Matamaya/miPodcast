@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import Home from './pages/Home';
 import Produccion from './pages/Production';
 import Contacto from './pages/Contacto';
+import ReportPDFButton from './components/ReportPDFButton';
 
 function App() {
   useEffect(() => {
@@ -67,10 +68,15 @@ function App() {
         <Home />
         <Produccion />
         <Contacto />
+
+        {/* CONTENEDOR DESCARGA PDF DOCUMENTO MODELO */}
+        <div className="w-full max-w-7xl mx-auto flex justify-center pb-12">
+            <ReportPDFButton />
+        </div>
       </main>
 
       {/* FOOTER */}
-      <footer className="bg-black text-zinc-400 py-8 text-center mt-20 border-t border-zinc-900">
+      <footer className="bg-black text-zinc-400 py-8 text-center mt-10 border-t border-zinc-900">
         <p>© 2024 ShockWave.</p>
         <p className="text-sm mt-2">
           Contenido bajo licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" className="underline hover:text-white transition-colors" target="_blank" rel="noreferrer">Creative Commons BY-NC-SA 4.0</a>
