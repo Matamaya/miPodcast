@@ -89,46 +89,51 @@ export default function ReportPDFButton() {
         y += 5;
         addTitle("CONTEXTO TECNICO DEL PROYECTO");
         addText("La aplicacion esta desarrollada con React 19. Esta libreria se basa en arquitectura de componentes (unidades de interfaz reutilizables) y al aplicar renderizado dinamico, se corria el riesgo de perder el rastro comprensivo sin recargar la pagina, algo fatal para asistencia. Por ello se aplicaron soluciones especificas como aria-live, un atributo que permite anunciar cambios dinámicos a lectores de pantalla.");
-        addImagePlaceholder("/src/assets/tree.png");
+        await addRealImage("/src/assets/tree.png");
         addText("La estructura incluye una organización por modulos y componentes especificos que integran directamente mejoras de accesibilidad en su ciclo de vida.");
 
         y += 5;
         addTitle("AUDITORIA INICIAL");
-        addText("Lighthouse arrojo un resultado inicial deficiente (71/100). Las alertas detectaron falta de 'alt', contraste por debajo del nivel, y ausencia de semantica.");
-        addImagePlaceholder("Captura 3 (img3) - Lighthouse inicial (Ej: 71/100)");
-        addText("WAVE y Axe DevTools señalaron fallas de nivel critico, identificando interacciones inaccesibles en los reproductores en los inputs visuales y contrastes erroneos. Esta combinacion de error automatico vs revision manual arrojo un marco claro a atacar.");
-        addImagePlaceholder("Captura 4 (img4) - Resultado WAVE inicial");
-        addImagePlaceholder("Captura 5 (img5) - Resultado Axe inicial");
+        addText("Lighthouse arrojo un resultado inicial notable (92/100), sin embargo, revelo debilidades que impiden la accesibilidad total y requerian resolucion. Las alertas detectaron falta de contraste y omisiones de etiquetas en componentes multimedia/formularios.");
+        await addRealImage("/src/assets/rendimiento_previo.png");
 
         y += 5;
         addTitle("DESARROLLO TECNICO DE LA AUDITORIA INICIAL");
-        addText("El desarrollo tecnico de la auditoria inicial busco identificar barreras reales antes de arreglar nada. Utilizando Lighthouse integrado en Google Chrome y herramientas de extension. El resultado del 71 indicaba problemas estructurales severos en DOM (como <div> usados falsamente de contenedor principal sin landmark).");
-        addText("Mas alla del test automatico, la navegacion manual por teclado detecto carencia absoluta del 'foco visible' vital para entender que componente esta activo al pulsar Tab. La auditoria evidencio las causas tecnicas puntuales.");
+        addText("El desarrollo tecnico de la auditoria inicial busco identificar y documentar barreras empleando Lighthouse como medidor pilar en el navegador. Aunque el puntaje era del 92%, la evaluacion arrojo errores perceptibles de alta criticidad para usuarios dependientes de lectores de texto u opciones visuales de alto contraste.");
+        addText("Al navegar en busca de los warnings, localizamos carencias de conectividad ID-label en formularios y un deficit en los ratios minimos recomendables.");
 
         y += 5;
         addTitle("PROBLEMAS DETECTADOS");
-        addText("Estructura semantica insuficiente: Abuso de 'div' genéricos aislando al lector de la capacidad de navegar entre regiones importantes (<main>, <nav>).");
-        addText("Formularios faltos de labels & Foco inactivo: Inputs en formularios huérfanos que imposibilitaban que el lector de pantalla describiera el campo, sumado al impedimento visual de rastrear Tab.");
-        addText("Imagenes sin atributo alt y Contraste insuficiente: Varias covers de podcasts y botones carecian de ratio 4.5:1. Se uso letra gris tenue sobre negro.");
-        addImagePlaceholder("/src/assets/rendimiento_previo.png");
+        addText("1. Nombres y etiquetas:", true);
+        addText("- Los elementos de formulario no tienen ninguna etiqueta asociada. Facilitar que las tecnologias asistenciales lean los controles es imprescindible.");
+
+        addText("2. Contraste:", true);
+        addText("- Los colores de fondo y de primer plano no tienen una relacion de contraste adecuada. Los colores tenues con poca opacidad fallaron los margenes de lectura estipulados.");
+
+        addText("3. Audio y video:", true);
+        addText("- Los elementos <video> no contienen un elemento <track> con el atributo [kind='captions']. Aportar contenido alternativo multimedia mejora la experiencia de usuarios con debilidades auditivas.");
+
+        await addRealImage("/src/assets/detalles_rend.png");
 
         y += 5;
         addTitle("MEJORAS IMPLEMENTADAS");
         addText("Refactorizacion estructural web: Reestructurado DOM para integrar <header>, <nav>, <main> y <footer> correctamente. Refactorizando evitamos cambiar la logica externa del app, solo estabilizamos sus cimientos.");
-        addImagePlaceholder("Captura 8/9 (img8, img9) - DOM Antes y Despues");
         addText("Formulario Accesible y Skip Link: Cada input conectó su id y label. Utilizacion de enlaces de salto (Skip link) en cabeceras para ir al texto y 'aria-live' para feedback dinámico.");
-        addImagePlaceholder("Captura 10/11 - Componentes y Feedback dinámico");
+        await addRealImage("/src/assets/formulario.png");
+        addText("Implementación de skip link ");
+        addText("Se añadió un enlace “Saltar al contenido” al inicio del documento. Visible solo al navegar con teclado ");
+        await addRealImage("/src/assets/skip_button.png");
         addText("Prefers-reduced-motion y Contraste: Paleta principal refinada y soporte para desactivación de animaciones en navegadores que informan fatiga de movimiento.");
 
         y += 5;
         addTitle("VALIDACION FINAL");
-        addText("Tras pruebas iteradas, Lighthouse alcanzo 97/100, acompañado de cero alertas determinantes en Wave y Axe DevToos. Mas alla de guarismos numericos, la validacion manual ratifico la operabilidad total mediante focus states consistentes en Tab.");
-        addImagePlaceholder("Captura 15/16/17 - Lighthouse Final: 97/100, WAVE y Axe");
+        addText("Tras pruebas iteradas, Lighthouse alcanzo 97/100. La validacion manual ratifico la operabilidad total mediante focus states consistentes en Tab.");
+        await addRealImage("/src/assets/rendimiento_final.png");
 
         y += 5;
         addTitle("GENERACION AUTOMATICA DEL INFORME PDF");
-        addText("Se implemento la generacion de este informe desde React vía la libreria jsPDF. El propio boton esta validado e integrado en la experiencia asginando texto descriptivo real en el DOM.");
-        addImagePlaceholder("Captura 18/19 - Boton Descargar e Informe Render");
+        addText("Se implemento la generacion de este informe desde React vía la libreria jsPDF. El propio boton esta validado e integrado en la experiencia asginando texto descriptivo e imagenes.");
+        await addRealImage("/src/assets/pdf_button.png");
 
         y += 5;
         addTitle("CONCLUSION");
