@@ -27,6 +27,7 @@ export default function PromoVideo() {
                     aria-label="Vídeo de presentación"
                 >
                     <source src="../public/Video promo podcast.mp4" type="video/mp4" />
+                    <track kind="captions" srcLang="es" label="Español" src="" default />
                     Tu navegador no soporta el reproductor de vídeo.
                 </video>
 

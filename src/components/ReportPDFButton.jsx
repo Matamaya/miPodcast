@@ -77,19 +77,19 @@ export default function ReportPDFButton() {
         addTitle("IDENTIFICACION Y ENLACES OFICIALES DEL PROYECTO");
         addText("URL publica (produccion): https://mi-podcast-seven.vercel.app/\nRepositorio GitHub: https://github.com/Matamaya/miPodcast.git\nBranch analizada: main\nCommit base sin acc.: /tree/\nCommit con acc.: \nComparacion directa de cambios (diff): /compare/commit-base...commit-accesibilidad");
 
-        await addRealImage("/src/assets/rendimiento.png");
+        await addRealImage("/src/assets/commit_historial.png");
         addText("- Descripcion - \nEn este apartado documentamos la evolucion del proyecto ShockWave, una web para podcasts. Inicialmente la plataforma era funcional pero no estaba planteada para cumplir los parametros de accesibilidad modernos. Mediante el historial de commits, demostramos el desarrollo progresivo. Entender que un commit es un registro de cambio en el historial es vital en entornos profesionales: la trazabilidad demuestra un desarrollo tecnico real y permite seguir que se modifico, cuando y por que, garantizando que no sean modificaciones superficiales.");
 
         y += 5;
         addTitle("RESUMEN EJECUTIVO");
         addText("Este documento presenta la auditoria tecnica completa realizada sobre la aplicacion web desarrollada con React 18/19 y desplegada en entorno de produccion mediante Vercel.");
-        addText("El analisis se basa en las WCAG 2.2 nivel AA. Las WCAG (Web Content Accessibility Guidelines) establecen criterios tecnicos internacionales de accesibilidad, siendo el nivel AA el exigido estandar.\n\nLa auditoria combina:\n- Evaluacion automatica mediante Lighthouse, WAVE y Axe.\n- Evaluacion manual mediante navegacion exclusiva con teclado.\n- Revision estructural del DOM (Document Object Model) y el renderizado concurrente.");
+        addText("El analisis se basa en las WCAG 2.2 nivel AA. Las WCAG (Web Content Accessibility Guidelines) establecen criterios tecnicos internacionales de accesibilidad, siendo el nivel AA el exigido estandar.\n\nLa auditoria combina:\n- Evaluacion automatica mediante Lighthouse.\n- Evaluacion manual mediante navegacion exclusiva con teclado.\n- Revision estructural del DOM (Document Object Model) y el renderizado concurrente.");
         addText("Este informe demuestra no solo correccion tecnica, sino comprension profunda de la accesibilidad como requisito estructural clave.");
 
         y += 5;
         addTitle("CONTEXTO TECNICO DEL PROYECTO");
-        addText("La aplicacion esta desarrollada con React. Esta libreria se basa en arquitectura de componentes (unidades de interfaz reutilizables) y al aplicar renderizado dinamico, se corria el riesgo de perder el rastro comprensivo sin recargar la pagina, algo fatal para asistencia. Por ello se aplicaron soluciones especificas como aria-live para anunciar cambios sin actualizar toda la dom.");
-        addImagePlaceholder("Captura 2 (img2) - Estructura general del proyecto en VSCode");
+        addText("La aplicacion esta desarrollada con React 19. Esta libreria se basa en arquitectura de componentes (unidades de interfaz reutilizables) y al aplicar renderizado dinamico, se corria el riesgo de perder el rastro comprensivo sin recargar la pagina, algo fatal para asistencia. Por ello se aplicaron soluciones especificas como aria-live, un atributo que permite anunciar cambios dinámicos a lectores de pantalla.");
+        addImagePlaceholder("/src/assets/tree.png");
         addText("La estructura incluye una organización por modulos y componentes especificos que integran directamente mejoras de accesibilidad en su ciclo de vida.");
 
         y += 5;
@@ -108,10 +108,9 @@ export default function ReportPDFButton() {
         y += 5;
         addTitle("PROBLEMAS DETECTADOS");
         addText("Estructura semantica insuficiente: Abuso de 'div' genéricos aislando al lector de la capacidad de navegar entre regiones importantes (<main>, <nav>).");
-        addImagePlaceholder("Captura 6 (img6) - Estructura DOM antes de refactorizacion");
-        addText("Imagenes sin atributo alt y Contraste insuficiente: Varias covers de podcasts y botones carecian de ratio 4.5:1. Se uso letra gris tenue sobre negro.");
-        addImagePlaceholder("Captura 7 (img7) - Ejemplo de contraste insuficiente");
         addText("Formularios faltos de labels & Foco inactivo: Inputs en formularios huérfanos que imposibilitaban que el lector de pantalla describiera el campo, sumado al impedimento visual de rastrear Tab.");
+        addText("Imagenes sin atributo alt y Contraste insuficiente: Varias covers de podcasts y botones carecian de ratio 4.5:1. Se uso letra gris tenue sobre negro.");
+        addImagePlaceholder("/src/assets/rendimiento_previo.png");
 
         y += 5;
         addTitle("MEJORAS IMPLEMENTADAS");

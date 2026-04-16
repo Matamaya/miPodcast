@@ -72,7 +72,7 @@ export default function Contacto() {
                                     id="nombre"
                                     name="nombre"
                                     aria-required="true"
-                                    className="w-full bg-transparent border-b border-black/30 pb-3 text-black placeholder-black/30 focus:outline-none focus:border-black focus:ring-2 focus:ring-black rounded-sm transition-all"
+                                    className="w-full bg-transparent border-b border-black/30 pb-3 text-black placeholder-black/60 focus:outline-none focus:border-black focus:ring-2 focus:ring-black rounded-sm transition-all"
                                     placeholder="Escribe tu nombre"
                                 />
                             </div>
@@ -85,7 +85,7 @@ export default function Contacto() {
                                     id="email"
                                     name="email"
                                     aria-required="true"
-                                    className="w-full bg-transparent border-b border-black/30 pb-3 text-black placeholder-black/30 focus:outline-none focus:border-black focus:ring-2 focus:ring-black rounded-sm transition-all"
+                                    className="w-full bg-transparent border-b border-black/30 pb-3 text-black placeholder-black/60 focus:outline-none focus:border-black focus:ring-2 focus:ring-black rounded-sm transition-all"
                                     placeholder="Escribe tu correo"
                                 />
                             </div>
@@ -116,9 +116,9 @@ export default function Contacto() {
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                                 </span>
                             </button>
-                            <p className="text-black/60 text-xs max-w-xs leading-relaxed">
+                            <p className="text-black/80 text-xs max-w-xs leading-relaxed">
                                 Al hacer clic en enviar, aceptas nuestra <br className="hidden md:block" />
-                                <a href="#" className="font-semibold text-black underline decoration-black/40 hover:decoration-black transition-colors focus:outline-none focus:ring-2 focus:ring-black rounded">Política de Privacidad</a>
+                                <a href="#" className="font-semibold text-black underline decoration-black/70 hover:decoration-black transition-colors focus:outline-none focus:ring-2 focus:ring-black rounded">Política de Privacidad</a>
                             </p>
                         </div>
                     </form>
@@ -129,12 +129,8 @@ export default function Contacto() {
 
                     {/* Tarjeta 1: Audio Upload */}
                     <div className="flex-1 min-h-[250px] bg-[#090b0f] border border-zinc-800 rounded-[2rem] p-8 flex flex-col justify-between hover:border-zinc-700 transition-colors group relative overflow-hidden">
-                        <div className="z-10 flex flex-col items-center justify-center h-full gap-4 text-white hover:text-[#3fec65] transition-colors cursor-pointer focus:outline-none focus:ring-4 focus:ring-[#3fec65] rounded-xl"
-                            role="button"
-                            aria-label="Subir archivo de audio"
-                            tabIndex="0"
-                            onClick={() => document.getElementById('audio-upload').click()}
-                            onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') document.getElementById('audio-upload').click() }}>
+                        <label htmlFor="audio-upload" className="z-10 flex flex-col items-center justify-center h-full gap-4 text-white hover:text-[#3fec65] transition-colors cursor-pointer focus-within:outline-none focus-within:ring-4 focus-within:ring-[#3fec65] rounded-xl"
+                            aria-label="Subir archivo de audio">
 
                             <input
                                 type="file"
@@ -146,7 +142,7 @@ export default function Contacto() {
                             {/* Icono de Micrófono */}
                             <svg aria-hidden="true" className="w-10 h-10 opacity-90 transition-transform group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z" /><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z" /></svg>
                             <span className="font-bold tracking-widest text-sm text-center">ENVIAR AUDIO</span>
-                        </div>
+                        </label>
 
                         <div className="z-10 flex items-center justify-between mt-auto">
                             <div className="flex items-center gap-3 text-zinc-400 group-hover:text-white transition-colors">

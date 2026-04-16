@@ -82,7 +82,9 @@ export default function Produccion() {
                         muted
                         playsInline
                         className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-1000 ease-out"
-                    ></video>
+                    >
+                        <track kind="captions" srcLang="es" label="Sin subtítulos" src="" default />
+                    </video>
                 </div>
 
                 {/* PARTE DERECHA: Tarjetas */}
